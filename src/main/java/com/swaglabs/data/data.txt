@@ -1,0 +1,16 @@
+url=https://www.saucedemo.com/
+browser=Edge
+screen=Desktop
+Iphone-13 Ipad-air SamsungS21 Desktop
+headless=false
+
+okUser=standard_user
+okPass=secret_sauce
+
+badUser=locked_out_user
+badPass=test
+urlLogExpected=https://www.saucedemo.com/inventory.html
+msgWrongCredentials=Epic sadface: Username and password do not match any user in this service
+msgEmptyUserName=Epic sadface: Username is required
+msgEmptyPass=Epic sadface: Password is required
+

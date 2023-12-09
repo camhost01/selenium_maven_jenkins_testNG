@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Test Suite" thread-count="2" verbose="5" parallel="none">
+
+   <test name = "Login Test Cases">
+      <classes>
+         <class name="com.swaglabs.Test.Login" />
+      </classes>
+   </test>
+   <test name = "Inventory  Test Cases">
+      <classes>
+         <class name="com.swaglabs.Test.Inventory" />
+      </classes>
+   </test>  
+
+</suite>
