@@ -2,7 +2,7 @@ url=https://www.saucedemo.com/
 browser=Edge
 screen=Desktop
 Iphone-13 Ipad-air SamsungS21 Desktop
-headless=false
+headless=true
 
 okUser=standard_user
 okPass=secret_sauce
