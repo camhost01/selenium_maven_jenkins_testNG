@@ -45,7 +45,6 @@ public class login extends ConfigBase {
             Assert.assertEquals(properties.getProperty("urlLogExpected"), driver.getCurrentUrl());
             test.log(Status.PASS, "Url expected same as obtained");
         } catch (AssertionError e) {
-            System.out.println(e);
             test.log(Status.FAIL, "Fail correct login user and pass");
             throw e;
         }
@@ -78,6 +77,7 @@ public class login extends ConfigBase {
             Assert.assertEquals(properties.getProperty("msgEmptyPass"), errorLogin.getText());
             test.log(Status.PASS, "Message for empty password is according to expected: "+ properties.getProperty("msgEmptyPass"));
         } catch (AssertionError e) {
+            test.log(Status.FAIL, "Error validating test case Empty Fields");
             throw e;
         }
     }
