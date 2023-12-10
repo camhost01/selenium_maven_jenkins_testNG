@@ -51,7 +51,17 @@ public class Inventory extends ConfigBase{
         InventorElements.check_itemtNameOrder("PriceLow");
         InventorElements.check_itemtNameOrder("PriceHigh");
     }
-
+    @Test
+    public void check_IconNotification() {
+        test = extent.createTest("Validate the icon notification","This test evaluate if icon cart notification is according to items clicked in the webpage");
+        InventorElements.check_iconNotification("Landing");
+    }
     
+    @Test
+    public void check_addProductFromDetails() {
+        test = extent.createTest("Validate the icon notification","This test evaluate if icon cart notification is according to items clicked in the webpage");
+        InventorElements.check_productDescription();
+        InventorElements.check_iconNotification("Details");
+    }
     
 }

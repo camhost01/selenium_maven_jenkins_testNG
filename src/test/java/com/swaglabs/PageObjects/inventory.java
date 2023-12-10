@@ -26,6 +26,7 @@ public class inventory extends ConfigBase {
     private String[] priceDescending = { "$49.99", "$29.99", "$15.99", "$15.99", "$9.99", "$7.99" };
 
     public inventory(WebDriver driver) {
+        loadFile();
         PageFactory.initElements(driver, this);
     }
 
@@ -59,9 +60,46 @@ public class inventory extends ConfigBase {
     @FindBy(className = "inventory_list")
     private WebElement inventory;
 
+    @FindBy(className = "shopping_cart_badge")
+    private WebElement cartNotification;
+
+    @FindBy(xpath = "//*[contains(text(),'Add to cart')]")
+    private WebElement addCartbutton;
+
+    @FindBy(id = "back-to-products")
+    private WebElement backToProductsBtn;
+
+    @FindBy(id = "item_0_title_link")
+    private WebElement titleProduct0;
+
+    @FindBy(id = "item_1_title_link")
+    private WebElement titleProduct1;
+
+    @FindBy(id = "item_2_title_link")
+    private WebElement titleProduct2;
+
+    @FindBy(id = "item_3_title_link")
+    private WebElement titleProduct3;
+
+    @FindBy(id = "item_4_title_link")
+    private WebElement titleProduct4;
+
+    @FindBy(id = "item_5_title_link")
+    private WebElement titleProduct5;
+
+    @FindBy(css = ".inventory_details_name")
+    private WebElement detailTitleProduct;
+
+    @FindBy(css = ".inventory_details_desc")
+    private WebElement detailDescProduct;
+
     private By itemListName = By.className("inventory_item_name");
 
     private By itemListPrice = By.className("inventory_item_price");
+
+    private By addCartBtn = By.xpath("//*[contains(text(),'Add to cart')]");
+
+    private By btnProducts = By.cssSelector(".btn_inventory");
 
     public void validate_HomeElements() {
         try {
@@ -132,4 +170,85 @@ public class inventory extends ConfigBase {
         }
     }
 
+    public void check_iconNotification(String details) {
+        try {
+            switch (details) {
+                case "Landing":
+                    listofElements = driver.findElements(addCartBtn);
+                    for (WebElement button : listofElements) {
+                        button.click();
+                        test.log(Status.PASS, "Click in Add to Cart button");
+                    }
+                    break;
+                case "Details":
+                    listofElements = driver.findElements(btnProducts);
+                    break;
+                default:
+                    break;
+            }
+            int value = listofElements.size();
+            String compare = String.valueOf(value);
+            Assert.assertEquals(cartNotification.getText(), compare);
+            test.log(Status.PASS, "Icon cart notification: " + cartNotification.getText()
+                    + " correspond to items added: " + compare);
+        } catch (AssertionError e) {
+            test.log(Status.FAIL, "Error in test case icon cart notification");
+            throw e;
+        }
+
+    }
+
+    public void check_productDescription() {
+        String detTitle, detDescription;
+        try {
+            for (int x = 1; x <= 6; x++) {
+                if (x == 1)
+                    titleProduct0.click();
+                if (x == 2)
+                    titleProduct1.click();
+                if (x == 3)
+                    titleProduct2.click();
+                if (x == 4)
+                    titleProduct3.click();
+                if (x == 5)
+                    titleProduct4.click();
+                if (x == 6)
+                    titleProduct5.click();
+                utilities.WaitElement(addCartbutton);
+                test.log(Status.PASS, "Product detail");
+                detTitle = detailTitleProduct.getText();
+                detDescription = detailDescProduct.getText();
+                switch (detTitle) {
+                    case "Sauce Labs Backpack":
+                        Assert.assertEquals(detDescription, properties.getProperty("Sauce_Labs_Backpack"));
+                        break;
+                    case "Sauce Labs Bike Light":
+                        Assert.assertEquals(detDescription, properties.getProperty("Sauce_Labs_Bike_Light"));
+                        break;
+                    case "Sauce Labs Bolt T-Shirt":
+                        Assert.assertEquals(detDescription, properties.getProperty("Sauce_Labs_Bolt_T-Shirt"));
+                        break;
+                    case "Sauce Labs Fleece Jacket":
+                        Assert.assertEquals(detDescription, properties.getProperty("Sauce_Labs_Fleece_Jacket"));
+                        break;
+                    case "Sauce Labs Onesie":
+                        Assert.assertEquals(detDescription, properties.getProperty("Sauce_Labs_Onesie"));
+                        break;
+                    case "Test.allTheThings() T-Shirt (Red)":
+                        Assert.assertEquals(detDescription,
+                                properties.getProperty("Test.allTheThings()_T-Shirt_(Red)"));
+                        break;
+                    default:
+                        break;
+                }
+                addCartbutton.click();
+                test.log(Status.PASS, "Product: " + detTitle + " added in cart from detail page");
+                backToProductsBtn.click();
+                utilities.WaitElement(burgerMenu);
+            }
+        } catch (AssertionError e) {
+            test.log(Status.FAIL, "Error checking the product description");
+            throw e;
+        }
+    }
 }
