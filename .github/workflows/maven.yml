@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "camhost" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "camhost" ]
+    branches: [ "main" ]
 
 jobs:
   build:
