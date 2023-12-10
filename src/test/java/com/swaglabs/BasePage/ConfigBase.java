@@ -28,7 +28,7 @@ public class ConfigBase {
 
     public void SetupConfigurations() {
             // Configurar el sistema para usar el controlador de Chrome
-            switch (properties.getProperty("browser")) {
+            switch ("Chrome") { //properties.getProperty("browser")
                 case "Chrome":
                     System.setProperty("wedriver.chrome.driver",
                     "src\\main\\java\\com\\orangehr\\drivers\\chromedriver.exe");
@@ -52,7 +52,7 @@ public class ConfigBase {
                 default:
                     break;
             }
-            switch (properties.getProperty("screen")) {
+            switch ("Desktop") { //properties.getProperty("screen")
                 case "Desktop":
                     driver.manage().window().maximize();
                     break;
@@ -68,7 +68,7 @@ public class ConfigBase {
                 default:
                     break;
             }
-            driver.get(properties.getProperty("url"));
+            driver.get("https://www.saucedemo.com/");
             waait = new WebDriverWait(driver, Duration.ofSeconds(22));
     }
 
