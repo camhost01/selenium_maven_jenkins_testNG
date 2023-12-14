@@ -2,3 +2,4 @@
 target/
 InventoryReport.html
 LoginReport.html
+*maven.yml

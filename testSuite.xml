@@ -9,11 +9,11 @@
          <class name="com.swaglabs.Test.Login" />
       </classes>
    </test>
-     <!-- 
+
    <test
       name="Inventory  Test Cases">
       <classes>
          <class name="com.swaglabs.Test.Inventory" />
       </classes>
-   </test> --> 
+   </test> 
 </suite>

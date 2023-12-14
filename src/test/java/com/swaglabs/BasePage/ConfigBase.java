@@ -26,14 +26,14 @@ public class ConfigBase {
     protected static ExtentTest test; 
     protected List<WebElement> listofElements;
 
-    public void SetupConfigurations() {
+   public void SetupConfigurations() {
             // Configurar el sistema para usar el controlador de Chrome
-            switch ("Chrome") {
+            switch (properties.getProperty("browser")) {
                 case "Chrome":
                     System.setProperty("wedriver.chrome.driver",
                     "src\\main\\java\\com\\orangehr\\drivers\\chromedriver.exe");
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    if ("false".equals("true")) {
+                    if (properties.getProperty("headless").equals("true")) {
                         chromeOptions.addArguments("--headless=new");
                         driver = new ChromeDriver(chromeOptions);
                     } else {
@@ -41,10 +41,9 @@ public class ConfigBase {
                     }
                     break;
                 case "Edge":
-                    System.setProperty("webdriver.edge.driver", "src\\main\\java\\com\\swaglabs\\drivers\\msedgedriver.exe");
                     EdgeOptions options = new EdgeOptions();
                     options.addArguments("--headless");
-                    if ("true".equals("true")) {
+                    if (properties.getProperty("headless").equals("true")) {
                         driver = new EdgeDriver(options);
                     } else {
                         driver = new EdgeDriver();
@@ -53,7 +52,7 @@ public class ConfigBase {
                 default:
                     break;
             }
-            switch ("Desktop") {
+            switch (properties.getProperty("screen")) {
                 case "Desktop":
                     driver.manage().window().maximize();
                     break;
@@ -69,7 +68,7 @@ public class ConfigBase {
                 default:
                     break;
             }
-            driver.get("https://www.saucedemo.com/");
+            driver.get(properties.getProperty("url"));
             waait = new WebDriverWait(driver, Duration.ofSeconds(22));
     }
 
