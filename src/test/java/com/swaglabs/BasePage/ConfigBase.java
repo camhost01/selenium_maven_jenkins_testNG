@@ -33,7 +33,7 @@ public class ConfigBase {
                     System.setProperty("wedriver.chrome.driver",
                     "src\\main\\java\\com\\orangehr\\drivers\\chromedriver.exe");
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    if (properties.getProperty("headless").equals("true")) {
+                    if ("false".equals("true")) {
                         chromeOptions.addArguments("--headless=new");
                         driver = new ChromeDriver(chromeOptions);
                     } else {
