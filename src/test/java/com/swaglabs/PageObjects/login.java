@@ -42,7 +42,7 @@ public class login extends ConfigBase {
             test.log(Status.PASS, "User and pass added correctly");
             loginButton.click();
             utilities.WaitElement(titleLanding);
-            Assert.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
+            Assert.assertEquals(properties.getProperty("urlLogExpected"), driver.getCurrentUrl());
             test.log(Status.PASS, "Url expected same as obtained");
         } catch (AssertionError e) {
             test.log(Status.FAIL, "Fail correct login user and pass");
@@ -92,8 +92,8 @@ public class login extends ConfigBase {
     protected void addUserPass(String type) {
         switch (type) {
             case "ok":
-                usernameField.sendKeys("standard_user");
-                passwordField.sendKeys("secret_sauce");
+                usernameField.sendKeys(properties.getProperty("okUser"));
+                passwordField.sendKeys(properties.getProperty("okPass"));
                 break;
             case "wrong":
                 usernameField.sendKeys(properties.getProperty("badUser"));
