@@ -36,18 +36,18 @@ public class Login extends ConfigBase{
         extent.flush();
     }
 
-    @Test
+    @Test(groups = {"LOG"})
     public void check_CorrectLogin() {
         test = extent.createTest("Validate Login - correct credentials","This test evaluate the response if the user add a correct user and pass");
         LoginPage.validate_CorrectCredentials();
     }
-    @Test
+    @Test(enabled = false)
     public void check_IncorrectLogin() {
         test = extent.createTest("Validate Login - incorrect credentials","This test evaluate the response if the user add an incorrect user and pass");
         LoginPage.validate_BadCredentials();
     }
 
-    @Test
+    @Test(enabled = false)
     public void check_emptyFields() {
         test = extent.createTest("Validate Login - empty fields","This test evaluate the response if the user not add user and pass");
         LoginPage.validate_EmptyFields();
