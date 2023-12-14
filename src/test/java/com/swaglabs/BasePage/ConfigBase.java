@@ -28,7 +28,7 @@ public class ConfigBase {
 
     public void SetupConfigurations() {
             // Configurar el sistema para usar el controlador de Chrome
-            switch ("Edge") {
+            switch ("Chrome") {
                 case "Chrome":
                     System.setProperty("wedriver.chrome.driver",
                     "src\\main\\java\\com\\orangehr\\drivers\\chromedriver.exe");
